@@ -19,6 +19,7 @@ app.get('/accounts', (req, res) => {
 app.post('/accounts', (req, res) => {
     let newAccount = req.body
     let id = store.accounts.length
+    newAccount.id = id;
     store.accounts.push(newAccount)
     res.status(201).send(newAccount)
 })
