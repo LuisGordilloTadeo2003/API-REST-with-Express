@@ -3,7 +3,10 @@ const logger = require('morgan')
 const errorhandler = require('errorhandler')
 const bodyParser = require('body-parser')
 
-let store = {}
+let store = {
+    nombre,
+    edad
+}
 store.accounts = []
 
 let app = express()
@@ -17,10 +20,17 @@ app.get('/accounts', (req, res) => {
 })
 
 app.post('/accounts', (req, res) => {
-    let newAccount = req.body
-    let id = store.accounts.length
+    let newAccount = {
+        id,
+        nombre,
+        edad
+    }
+    newAccount.nombre = req.body.nombre;
+    newAccount.edad = req.body.edad;
+    newAccount.id = store.accounts.length;
+
     store.accounts.push(newAccount)
-    res.status(201).send({ id: id })
+    res.status(201).send(newAccount)
 })
 
 app.put('/accounts/:id', (req, res) => {
